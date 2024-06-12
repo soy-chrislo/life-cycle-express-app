@@ -1,0 +1,11 @@
+- Notas, commits, etc.
+- Rutas.
+- Variables de entorno y entornos como tal.
+- Carpetas compartidas o volumenes (volume or bind mount).
+- Script de inicialización de base de datos.
+- Logging
+- Health Check
+- TESTING
+- Compilación de docker.
+  - Optimización.
+- MONITORIZACIÓN
