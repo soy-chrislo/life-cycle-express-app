@@ -35,6 +35,7 @@ export const postUser = async (
 ) => {
 	try {
 		const userDto: UserDto = { ...req.body };
+
 		const user = await createUser(userDto);
 		return res.status(201).json(user);
 	} catch (error) {
@@ -81,3 +82,7 @@ export const deleteUser = async (
 		next(error);
 	}
 };
+
+// -----------------------
+// #### Relation ROLE ####
+// -----------------------

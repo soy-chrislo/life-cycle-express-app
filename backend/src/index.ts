@@ -1,8 +1,9 @@
 import "reflect-metadata";
 import express from "express";
-import type { Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 import swaggerUi from "swagger-ui-express";
 import swaggerSetup from "./docs/swagger.js";
+import cors from "cors";
 
 import "./db/data-source.js";
 import { errorHandler } from "./middleware/errorHandler.js";
@@ -19,24 +20,40 @@ if (env.NODE_ENV === "development") {
 }
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 const port = env.PORT;
+
+(() => {
+	// res.set('Access-Control-Allow-Origin', 'http://localhost:4321');
+	const corsOptions = {
+		origin: ["http://localhost:4321", "http://localhost:5173"],
+		methods: ["GET", "POST", "PUT", "DELETE"],
+		allowedHeaders: ["Content-Type", "Authorization"],
+		credentials: true,
+	};
+	app.use(cors(corsOptions));
+
+	app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
+		if (!(err instanceof Error)) return;
+		if (err && err.name === "CorsError") {
+			res.status(403).json({ message: "Access denied by CORS policy" });
+		} else {
+			next();
+		}
+	});
+})();
 
 (() => {
 	app.use(morganMiddleware);
 	info(`Setup morgan with ${env.NODE_ENV} environment`);
 })();
 
-app.use(express.json());
-
 await initializeDataSource();
 
 if (env.NODE_ENV === "development") {
 	app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSetup));
 }
-
-app.get("/", (req: Request, res: Response) => {
-	res.json({ message: "Hello World" });
-});
 
 app.use(mainRouter);
 

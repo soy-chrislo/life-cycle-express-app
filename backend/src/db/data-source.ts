@@ -2,6 +2,8 @@ import { DataSource, type ObjectLiteral, type EntityTarget } from "typeorm";
 import { UserModel } from "../entities/user/index.js";
 import { env } from "../../env/env.js";
 import { info } from "../log/logger.js";
+import { RoleModel } from "../entities/role/role.model.js";
+import { PasswordModel } from "../entities/passwod/password.model.js";
 
 const AppDataSource = new DataSource({
 	type: "postgres",
@@ -12,7 +14,7 @@ const AppDataSource = new DataSource({
 	database: env.DB_NAME,
 	synchronize: true,
 	logging: false,
-	entities: [UserModel],
+	entities: [UserModel, RoleModel, PasswordModel],
 	subscribers: [],
 	migrations: [],
 });

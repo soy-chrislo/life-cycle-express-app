@@ -26,4 +26,4 @@ RUN npm install --omit=dev
 
 EXPOSE 3000
 
-CMD ["node", "dist/serve.js"]
+CMD ["node", "--run", "serve"]

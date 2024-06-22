@@ -4,6 +4,7 @@ export const userSchema = z
 	.object({
 		username: z.string().max(255),
 		password: z.string().max(255),
+		role: z.union([z.string().max(255), z.number()]).optional(),
 	})
 	.strict();
 

@@ -1,0 +1,17 @@
+### /login
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "christian",
+  "password": "123"
+}
+
+### /validate
+POST http://localhost:3000/auth/validate
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJjaHJpc3RpYW4iLCJpYXQiOjE3MTg5MDg0MTAsImV4cCI6MTcxODkxMjAxMH0.F4rH0pUxUXAo_XddD2UoyAAL0gTblpuqrKDcu6fxgu0"
+}

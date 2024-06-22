@@ -3,6 +3,7 @@ import { deleteUser, getUser, patchUser, postUser } from "./user.controller.js";
 import { validateSchema } from "../../middleware/validateSchema.js";
 import { partialUserSchema, userSchema } from "./user.schema.js";
 import { checkQueryParams } from "../../middleware/checkQueryParams.js";
+import { authMiddleware } from "../../middleware/protectedRoute.js";
 
 export const userRouter = express.Router();
 
@@ -31,7 +32,7 @@ export const userRouter = express.Router();
  *       404:
  *         description: No users or user found
  */
-userRouter.get("/", getUser);
+userRouter.get("/", authMiddleware, getUser);
 
 /**
  * @openapi
