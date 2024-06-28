@@ -1,6 +1,6 @@
+import { MoonIcon, SunIcon } from "lucide-react";
 import { useEffect } from "react";
 import { useTheme } from "./providers/ThemeProvider";
-import { Switch } from "./ui/switch";
 
 export default function ThemeSwitcher() {
 	const { theme, setTheme } = useTheme();
@@ -16,8 +16,12 @@ export default function ThemeSwitcher() {
 	}, [theme]);
 
 	return (
-		<>
-			<Switch checked={theme === "dark"} onCheckedChange={handleSwitch} />
-		</>
+		<div
+			className="hover:cursor-pointer"
+			onClick={handleSwitch}
+			onKeyUp={handleSwitch}
+		>
+			{theme === "dark" ? <MoonIcon /> : <SunIcon />}
+		</div>
 	);
 }
