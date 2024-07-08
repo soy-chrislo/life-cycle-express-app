@@ -1,9 +1,9 @@
 import { createElement } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import DashboardPage from "../../pages/Dashboard.page";
 import HomePage from "../../pages/Home.page";
 import IndexPage from "../../pages/Index.page";
 import NotFoundPage from "../../pages/NotFound.page";
+import DashboardPage from "../../pages/dashboard/Dashboard.page";
 import withMenus from "../hoc/withMenus";
 import withNavigationBar from "../hoc/withNavbar";
 import { ThemeProvider } from "./ThemeProvider";

@@ -1,28 +1,20 @@
-import { type ComponentType, createElement, useEffect, useState } from "react";
+import { type ComponentType, createElement } from "react";
 import LateralMenu from "../LateralMenu";
 import NavigationBar from "../NavigationBar";
-import { Button } from "../ui/button";
+import { DashboardProvider } from "../providers/DashboardProvider";
 
 function withMenus(Component: ComponentType) {
 	function WrappedComponent() {
-		const [isCollapsed, setIsCollapsed] = useState(false);
-
-		const toggleMenu = () => {
-			setIsCollapsed(!isCollapsed);
-		};
-
-		useEffect(() => {
-			console.log({ isCollapsed });
-		}, [isCollapsed]);
-
 		return (
-			<>
+			<div>
 				<NavigationBar />
-				<div className="flex relative z-10">
-					<LateralMenu /> {/* mt-14 */}
-					<Component /> {/* mt-14 */}
-				</div>
-			</>
+				<DashboardProvider>
+					<div className="flex h-[calc(100vh-3.54rem)]">
+						<LateralMenu /> {/* mt-14 */}
+						<Component /> {/* mt-14 */}
+					</div>
+				</DashboardProvider>
+			</div>
 		);
 	}
 	return createElement(WrappedComponent);
