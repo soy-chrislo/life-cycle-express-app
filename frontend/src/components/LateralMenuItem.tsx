@@ -20,7 +20,7 @@ export default function LateralMenuItem({
 		<span
 			onClick={onClick}
 			onKeyDown={onClick}
-			className={`flex p-2 hover:cursor-pointer hover:bg-gray-100 hover:dark:bg-gray-900 rounded-md ${isSelected ? "bg-gray-100 dark:bg-gray-900" : null} ${isExpanded ? "w-48" : "w-auto"}`}
+			className={`flex p-2 hover:cursor-pointer hover:bg-accent rounded-md ${isSelected ? "bg-accent transparent" : null} ${isExpanded ? "w-48" : "w-auto"}`}
 		>
 			<Icon
 				className={`${isExpanded ? "mr-5" : null}`}

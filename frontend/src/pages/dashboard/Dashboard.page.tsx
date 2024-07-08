@@ -13,8 +13,6 @@ export default function DashboardPage() {
 	const { dashboardPage } = useDashboardPage();
 	const PageComponent = pageComponents[dashboardPage];
 	return (
-		<div>
-			<Suspense fallback={null}>{PageComponent && <PageComponent />}</Suspense>
-		</div>
+		<Suspense fallback={null}>{PageComponent && <PageComponent />}</Suspense>
 	);
 }

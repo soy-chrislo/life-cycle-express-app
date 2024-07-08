@@ -35,7 +35,7 @@ export default function LateralMenu() {
 		<div
 			className="border-r"
 			style={{
-				maxWidth: isExpanded ? "400px" : "100px",
+				maxWidth: isExpanded ? "fit-content" : "100px",
 				transition: "max-width 0.5s ease-out",
 			}}
 		>
