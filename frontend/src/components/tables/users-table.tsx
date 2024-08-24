@@ -23,7 +23,7 @@ export default function UsersTable() {
 	});
 	return (
 		<Table>
-			<TableCaption>A list of your recent invoices.</TableCaption>
+			<TableCaption>A list of registered user.</TableCaption>
 			<TableHeader>
 				<TableRow>
 					{table.getHeaderGroups().map((headerGroup) =>
@@ -45,15 +45,23 @@ export default function UsersTable() {
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{table.getRowModel().rows.map((row) => (
-					<TableRow key={row.id}>
-						{row.getVisibleCells().map((cell) => (
-							<TableCell key={cell.id}>
-								{flexRender(cell.column.columnDef.cell, cell.getContext())}
-							</TableCell>
-						))}
+				{table.getRowModel().rows.length !== 0 ? (
+					table.getRowModel().rows.map((row) => (
+						<TableRow key={row.id}>
+							{row.getVisibleCells().map((cell) => (
+								<TableCell key={cell.id}>
+									{flexRender(cell.column.columnDef.cell, cell.getContext())}
+								</TableCell>
+							))}
+						</TableRow>
+					))
+				) : (
+					<TableRow>
+						<TableCell colSpan={columns.length} className="text-center">
+							No data found.
+						</TableCell>
 					</TableRow>
-				))}
+				)}
 			</TableBody>
 		</Table>
 	);

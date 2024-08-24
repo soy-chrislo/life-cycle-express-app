@@ -1,27 +1,23 @@
-version: '3.8'
 services:
   db_dev:
-    image: postgres:alpine
-    container_name: postgres_dev
+    container_name: app_db_development
+    image: postgres:16-alpine
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: "123"
-      POSTGRES_DB: app
-    volumes:
-      - postgres_data_dev:/var/lib/postgresql/data
-  db_prod:
-    image: postgres:alpine
-    container_name: postgres_prod
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: d80F.p<pK>s7:0_`G{[MaOpoXa/R,o-M7pn}8#,JiunYQnDM(
-      POSTGRES_PASSWORD: r43V.(aTxM$&Fx£33REl+=^t/E~@MaxI358/24*gGW0?vX
-      POSTGRES_DB: app
-    volumes:
-      - postgres_data_prod:/var/lib/postgresql/data
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "7Z7(9f<3ti?a>p>w(t078^NAVAW{,£N,fp%[u(V&0x7n^n"
+      POSTGRES_DB: db_app
+    volumes: # (bind mount & volume)
+      - ./postgres/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./postgres/script:/docker-entrypoint-initdb.d/
+      - ./postgres/logs:/mnt/log
+      - app_db_dev:/var/lib/postgresql/data
+    networks:
+      - app_network
 volumes:
-  postgres_data_dev:
-  postgres_data_prod:
+  app_db_dev:
+networks:
+  app_network:
+    driver: bridge

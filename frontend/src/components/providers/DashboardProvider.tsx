@@ -37,8 +37,18 @@ export const DashboardProvider = ({ children }: PropsWithChildren) => {
 		return savedPage || "panel";
 	});
 
+	const setDashboardPageWithLocalStorage = (page: DashboardPage) => {
+		localStorage.setItem("dashboardPage", page);
+		setDashboardPage(page);
+	};
+
 	return (
-		<DashboardContext.Provider value={{ dashboardPage, setDashboardPage }}>
+		<DashboardContext.Provider
+			value={{
+				dashboardPage,
+				setDashboardPage: setDashboardPageWithLocalStorage,
+			}}
+		>
 			{children}
 		</DashboardContext.Provider>
 	);

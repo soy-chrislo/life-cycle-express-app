@@ -16,6 +16,7 @@ import {
 
 export default function LateralMenu() {
 	const { setDashboardPage } = useDashboardPage();
+
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [itemSelected, setItemSelected] = useState<DashboardPage>("panel");
 

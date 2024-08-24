@@ -1,6 +1,7 @@
+import type { ComponentType } from "react";
 import NavigationBar from "../NavigationBar";
 
-const withNavigationBar = (Component: React.ComponentType) => {
+const withNavigationBar = (Component: ComponentType) => {
 	return () => {
 		return (
 			<div className="relative">

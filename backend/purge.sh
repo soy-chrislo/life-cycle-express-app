@@ -1,6 +1,10 @@
 #!/bin/bash
 
-VOLUME_NAME="backend_postgres_data"
+VOLUME_NAME=(
+  "backend_app_db_dev"
+  "backend_app_db_prod"
+  "backend_app_db_test"
+)
 
 docker volume rm $VOLUME_NAME
 

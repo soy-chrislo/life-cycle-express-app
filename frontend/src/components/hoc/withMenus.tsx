@@ -10,8 +10,8 @@ function withMenus(Component: ComponentType) {
 				<NavigationBar />
 				<DashboardProvider>
 					<div className="flex h-[calc(100vh-3.54rem)]">
-						<LateralMenu /> {/* mt-14 */}
-						<Component /> {/* mt-14 */}
+						<LateralMenu />
+						<Component />
 					</div>
 				</DashboardProvider>
 			</div>
